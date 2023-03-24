@@ -1,4 +1,7 @@
+use bevy::prelude::*;
 use std::ops::{Add, Sub};
+
+use crate::GridAlign;
 
 /// Coordinate System Trait
 pub trait Coords<T = Self>
@@ -36,7 +39,11 @@ pub struct TriangleCoord {
     pub side: i8,
     pub neighbours: TriangleNeighbours,
 }
-
+impl TriangleCoord {
+    pub fn to_world_pos(&self, size: f32) {
+        todo!()
+    }
+}
 impl Coords for TriangleCoord {
     const ZERO: Self = TriangleCoord {
         q: 0,
@@ -87,6 +94,11 @@ pub struct SquareCoord {
     pub r: i32,
 }
 
+impl SquareCoord {
+    pub fn to_world_pos(&self, size: f32) {
+        todo!()
+    }
+}
 impl Coords for SquareCoord {
     const ZERO: Self = SquareCoord { q: 0, r: 0 };
 
@@ -136,10 +148,21 @@ impl Sub for SquareCoord {
 
 /// HEXAGON COORDINATES
 
+#[derive(Clone, Copy, Debug, Hash)]
+pub enum HexOrientation {
+    PointyUp,
+    FlatUp,
+}
+
 #[derive(Clone, Copy, Debug, Hash, Default)]
 pub struct HexCoord {
     pub q: i32,
     pub r: i32,
+}
+impl HexCoord {
+    pub fn to_world_pos(&self, size: f32, orientation: &HexOrientation) {
+        todo!()
+    }
 }
 
 impl Coords for HexCoord {
